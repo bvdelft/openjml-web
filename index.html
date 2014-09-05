@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8">
+    <title>Web-interface for OpenJML</title>
+    <script src="script.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+  
+    <!-- POPUP: EXAMPLES -->
+    
+    <div id="examples" class="popup">
+      <div class="popupCenter">
+        <h2>Examples</h2>
+        <p>The example will load as a new file.
+        </p>
+        <ul>
+          <li> <a href="javascript:void(0)" 
+                  onclick="openExample('jml-examples/JMLTest.java','JMLTest.java'); hide('examples')">
+                  JMLTest.java</a>
+        </ul>
+        <p>
+        <a href="javascript:void(0)" onclick="hide('examples')">Close window</a>
+        </p>
+      </div>
+    </div>
+    
+    <!-- POPUP: COURSE CODE -->
+    
+    <div id="course" class="popup">
+      <div class="popupCenter">
+        <h2>Course material</h2>
+        <p>These are files used in a <a href="http://www.cse.chalmers.se/edu/course/TDA293/" target="_blank">course at Chalmers university</a>.
+        </p>
+        <ul>
+          <li> <a href="javascript:void(0)" 
+                  onclick="openExample('course-code/EntryList.java','EntryList.java'); hide('course')">
+                  EntryList.java</a> 
+          <li> <a href="javascript:void(0)" 
+                  onclick="openExample('course-code/Queue.java','Queue.java'); hide('course')">
+                  Queue.java</a> 
+          <li> <a href="javascript:void(0)" 
+                  onclick="openExample('course-code/Maze.java','Maze.java'); hide('course')">
+                  Maze.java</a> 
+        </ul>
+        <p>
+        <a href="javascript:void(0)" onclick="hide('course')">Close window</a>
+        </p>
+      </div>
+    </div>
+    
+    <!-- POPUP: ABOUT -->
+    
+    <div id="about" class="popup">
+      <div class="popupCenter">
+        <h2>About</h2>
+        <p>This website provides an online interface to 
+        <a href="http://jmlspecs.sourceforge.net/" target="_blank">OpenJML</a>
+        and was developed to simplify its use in a 
+        <a href="http://www.cse.chalmers.se/edu/course/TDA293/" target="_blank">course at Chalmers university</a>.
+        </p>
+        <p>
+        The web-interface can only handle one file at a time (packages
+        are not supported) and has a timout of 10 seconds for syntax checking
+        and 30 seconds for ESC with Yices 2.
+        </p>
+        <p>
+        If you find that the website malfunctions, please contact me about it
+        and specify which browser you are using:<br/>vandeba (a) chalmers.se
+        </p>
+        <p>
+        This service is provided as is. Information you enter while using this
+        site is not stored.
+        </p>
+        <p>
+        <a href="javascript:void(0)" onclick="hide('about')">Close window</a>
+        </p>
+      </div>
+    </div>
+     
+    <!-- POPUP: CREDITS -->
+    
+    <div id="credits" class="popup">
+      <div class="popupCenter">
+        <h2>Sources and Credits</h2>
+        <p>This interface was developed by Bart van Delft, 2013.
+        </p>
+        <p>More information on OpenJML and its developers can be found
+        at <a href="http://jmlspecs.sourceforge.net/" target="_blank">jmlspecs.sourceforge.net</a>.
+        </p>
+        <p>If you want to deploy or modify this website, the code (a mixture
+        of DHTML and a small bit of PHP) is available 
+        <a href="openjml_sources.zip">here</a> with some documentation 
+        under the <a href="http://www.wtfpl.net/" target="_blank">WTFPL</a> license
+        (the used <a href="http://ajaxorg.github.io/ace/" target="_blank">Ace</a> editor comes under the BSD license).
+        </p>
+        <p>
+        <a href="javascript:void(0)" onclick="hide('credits')">Close window</a>
+        </p>
+      </div>
+    </div>   
+    
+    <!-- TOP BAR -->
+    
+    <div id="topbar">
+      <div id="title">
+         Web-interface for OpenJML
+      </div>
+      <div id="examplesB" class="topbutton">
+         <a href="javascript:void(0)" onclick="show('examples')">examples</a> -
+         <a href="javascript:void(0)" onclick="show('course')">course material</a>
+      </div>
+      <div id="aboutB" class="topbutton">
+         <a href="javascript:void(0)" onclick="show('credits')">sources</a> -
+         <a href="javascript:void(0)" onclick="show('about')">about</a>
+      </div>
+    </div>
+    
+    <!-- ACTUAL INTERFACE -->
+    
+    <div id="editorPaneT">
+      <!-- Tabs of open files -->
+      <div id="filetabsPane">
+        <span id="addFile"><a href="javascript:void(0)" onclick="addTab()">+</a></span>
+      </div>
+      <!-- Editor pane where ace editor will be -->
+      <div id="editorPane"></div>
+      <div id="controls">
+        <img id='loading' src="img/loading_squares.gif" />
+        <button id='syntaxB' onclick="jml('syntax')">Syntax</button>
+        <button id='escB' onclick="jml('esc')">ESC</button>
+      </div>
+    </div>
+    
+  </body>
+</html>
+
