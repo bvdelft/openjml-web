@@ -4,6 +4,9 @@
 // files. This folder should be rwx for the webservice
 $TMPDIR = '/home/bart/Projecten/nowplease/openjml/tmp';
 
+// Path to openjml jar
+$OPENJML = '/home/bart/Projecten/nowplease/openjml/lib/openjml.jar';
+
 // Path to Yices 2 binary
 $YICES = '/home/bart/Projecten/nowplease/openjml/yices2/bin/yices';
 
@@ -35,11 +38,11 @@ system('rm -rf ' . $tempdir);
 ////////////////////////////////////////////////////////////////////////////////
 
 function runSyntaxCheck($dir, $javafile, $name) {
-
+    global $OPENJML;
     list($stdout, $stderr, $errcode) =
       runAndEcho( 'timeout 10s'
-                  . ' java -Xbootclasspath/p:../../lib/openjml.jar' 
-                  . ' -jar ../../lib/openjml.jar'
+                  . ' java -Xbootclasspath/p:' . $OPENJML
+                  . ' -jar ' . $OPENJML
                   . ' -noInternalSpecs -quiet -strictJML' 
                   . ' ' . $javafile
                 , $dir);
@@ -60,10 +63,11 @@ function runSyntaxCheck($dir, $javafile, $name) {
 function runYices($dir, $javafile, $name) {
 
     global $YICES;
+    global $OPENJML;
 	list($stdout, $stderr, $errcode) =
       runAndEcho( 'timeout 30s'
                   . ' java' 
-                  . ' -jar ../../lib/openjml.jar'
+                  . ' -jar ' . $OPENJML
                   . ' -esc'
                   . ' -prover yices2'
                   . ' -exec ' . $YICES 
